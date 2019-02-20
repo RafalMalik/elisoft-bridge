@@ -12,7 +12,10 @@ if (count($elisoftDocuments) > 0) {
 		// 2. Send post to elisoftDocuments/id with status + 1
 			//var_dump($document);
 			$document->type = 5;
-			$resp = call('/elisoft_documents/' . $document->id, 'PUT', json_encode($document));
+			$resp = call('/elisoft_documents/' . $document->id, 'PUT', json_encode(array('type' => 5)));
+			var_dump(json_decode($resp));
+			
+			$resp = call('/elisoft_documents', 'POST', json_encode($document));
 			var_dump(json_decode($resp));
 	}
 	
