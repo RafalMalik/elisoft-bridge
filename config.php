@@ -12,3 +12,5 @@
 //$conn = sqlsrv_connect( $serverName, $connectionInfo);  
 
 //$tsql = "SELECT id, FirstName, LastName, Email FROM tblContact";  
+
+const API_URL = 'http://app.klajmaxgo.pl/api';

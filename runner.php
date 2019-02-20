@@ -1,18 +1,22 @@
 <?php
 
-include('config.php');
+include('api.php');
 
-// Get cURL resource
-$curl = curl_init();
-// Set some options - we are passing in a useragent too here
-curl_setopt_array($curl, array(
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'http://testcURL.com/?item1=value&item2=value2',
-    CURLOPT_USERAGENT => 'Codular Sample cURL Request'
-));
-// Send the request & save response to $resp
-$resp = curl_exec($curl);
-// Close request to clear up some resources
-curl_close($curl);
+$elisoftDocuments = json_decode(call('/elisoft_documents.json'));
 
-var_dump($resp);
+// Etap 1 - pobieranie z API
+if (count($elisoftDocuments) > 0) {
+	
+	foreach ($elisoftDocuments as $document) {
+		// 1. Insert to database 
+		// 2. Send post to elisoftDocuments/id with status + 1
+			var_dump($document);
+	}
+	
+} else {
+	echo "Brak dokumentow do pobrania";
+}
+
+
+// Etap 2 - sprawdzanie faktur w Elisoft i ich wysylka na API
+
