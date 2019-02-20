@@ -1,16 +1,17 @@
-<?php  
-//$serverName = "ServerName"; 
-//$uid = "sqlusername";   
-//$pwd = "sqlpassword";  
-//$databaseName = "DBName"; 
+<?php
 
-//$connectionInfo = array( "UID"=>$uid,                            
-    //                     "PWD"=>$pwd,                            
-  //                       "Database"=>$databaseName); 
+require('mssql.php');
 
-/* Connect using SQL Server Authentication. */  
-//$conn = sqlsrv_connect( $serverName, $connectionInfo);  
+$hostname = "MYSTPC\SQLEXPRESS";
+$port = "";
+$dbname = "klajmax";
+$username = "MystPC\Kenny";
+$pwd = "";
+
+$conn = new PdoDblibMssql($hostname, $port, $dbname, $username, $pwd);
+
+var_dump($conn);
 
 //$tsql = "SELECT id, FirstName, LastName, Email FROM tblContact";  
 
-const API_URL = 'http://app.klajmaxgo.pl/api';
+        const API_URL = 'http://app.klajmaxgo.pl/api';
