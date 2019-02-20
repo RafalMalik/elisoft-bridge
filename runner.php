@@ -10,7 +10,10 @@ if (count($elisoftDocuments) > 0) {
 	foreach ($elisoftDocuments as $document) {
 		// 1. Insert to database 
 		// 2. Send post to elisoftDocuments/id with status + 1
-			var_dump($document);
+			//var_dump($document);
+			$document->type = 5;
+			$resp = call('/elisoft_documents/' . $document->id, 'PUT', json_encode($document));
+			var_dump(json_decode($resp));
 	}
 	
 } else {
