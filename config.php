@@ -1,17 +1,13 @@
 <?php
 
-require('mssql.php');
+require_once('mssql.php');
 
 $hostname = "MYSTPC\SQLEXPRESS";
-$port = "";
+$port = "1433";
 $dbname = "klajmax";
-$username = "MystPC\Kenny";
-$pwd = "";
+$username = "kenny";
+$pwd = "klajmax";
 
 $conn = new PdoDblibMssql($hostname, $port, $dbname, $username, $pwd);
 
-var_dump($conn);
-
-//$tsql = "SELECT id, FirstName, LastName, Email FROM tblContact";  
-
-        const API_URL = 'http://app.klajmaxgo.pl/api';
+const API_URL = 'http://app.klajmaxgo.pl/api';

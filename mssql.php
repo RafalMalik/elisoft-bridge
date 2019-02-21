@@ -60,10 +60,17 @@ class PdoDblibMssql {
         $this->db = null;
     }
 
-    public function connect() {
+    public function execute($query) {
+        $stmt = $this->db->prepare($query);
+        
+        $stmt->execute();
+        
+        return $stmt->fetch();
+    }
 
+    public function connect() {
         try {
-            $this->db = new PDO("dblib:host=$this->hostname:$this->port;dbname=$this->dbname", "$this->username", "$this->pwd");
+            $this->db = new PDO("sqlsrv:Server=$this->hostname;Database=$this->dbname", $this->username, $this->pwd);
         } catch (PDOException $e) {
             $this->logsys .= "Failed to get DB handle: " . $e->getMessage() . "\n";
         }
