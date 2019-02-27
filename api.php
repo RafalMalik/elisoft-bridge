@@ -22,11 +22,13 @@ function call($endpoint, $method = 'GET', $params = null) {
 	}
 	
 	if ($method == 'PUT') {
-		curl_setopt($curl, CURLOPT_PUT, 1);
+		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
 	}
 
 	$response = curl_exec($curl);
+
+//var_dump($response);
 	
 	curl_close($curl);
 
