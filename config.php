@@ -10,4 +10,4 @@ $pwd = "klajmax";
 
 $conn = new PdoDblibMssql($hostname, $port, $dbname, $username, $pwd);
 
-const API_URL = 'http://app.klajmaxgo.pl/api';
+const API_URL = 'http://app.klajmaxgo.pl';

@@ -60,12 +60,18 @@ class PdoDblibMssql {
         $this->db = null;
     }
 
-    public function execute($query) {
+    public function select($query) {
         $stmt = $this->db->prepare($query);
         
         $stmt->execute();
         
         return $stmt->fetch();
+    }
+    
+    public function execute($query) {
+        $stmt = $this->db->prepare($query);
+        
+        return $stmt->execute();
     }
 
     public function connect() {
