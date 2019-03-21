@@ -5,6 +5,8 @@ require_once('config.php');
 
 $elisoftDocuments = call('/api/elisoft_documents');
 
+var_dump($elisoftDocuments);
+
 // Etap 1 - pobieranie z API
 if (count($elisoftDocuments) > 0) {
 
@@ -77,11 +79,9 @@ if (count($elisoftDocuments) > 0) {
                     . ")");
         }
         // 2. Send post to elisoftDocuments/id with status + 1
-        $resp = call('/api/elisoft_documents/' . $document->id, 'PUT', json_encode($document));
-        var_dump($resp);
-//
-//        $resp = call('/elisoft_documents', 'POST', json_encode($document));
-//        var_dump(json_decode($resp));
+        unset($document->id);
+        $resp = call('/api/elisoft_documents', 'PUT', $document);
+        var_dump(json_decode($resp));
     }
 } else {
     echo "Brak dokumentow do pobrania";
@@ -90,20 +90,23 @@ if (count($elisoftDocuments) > 0) {
 
 // Etap 2 - sprawdzanie faktur w Elisoft i ich wysylka na API
 $invoices = $conn->select("SELECT TOP 1 * FROM [dbo].[Faktury] ORDER BY [ID_Faktury] DESC");
+if (is_array($invoices)) {
+    foreach ($invoices as $invoice) {
+        $invoiceToSend = new stdClass();
+        $invoiceToSend->number = $invoice["NrFaktury"];
+        $invoiceToSend->amount = $invoice["WartoscBrutto"];
+        $invoiceToSend->issuing = $invoice["FaktureWystawil"];
+        $invoiceToSend->purchasing = $invoice["FaktureOdebral"];
+        $invoiceToSend->createdAt = $invoice["DataWystawienia"];
+        $invoiceToSend->currency = $invoice["WalutaSymbol"];
+        $invoiceToSend->status = $invoice["Zaplacona"];
+        $invoiceToSend->errands = []; //a to co?
+        $invoiceToSend->rental = ''; //j.w
+        $invoiceToSend->name = $invoice["Nabywca_Nazwa"];
+        $invoiceToSend->dateOfPayment = $invoice["TerminZaplaty"]; //czy DataZaplaty?
 
-foreach ($invoices as $invoice) {
-    $invoiceToSend = new stdClass();
-    $invoiceToSend->number = $invoice["NrFaktury"];
-    $invoiceToSend->amount = $invoice["WartoscBrutto"];
-    $invoiceToSend->issuing = $invoice["FaktureWystawil"];
-    $invoiceToSend->purchasing = $invoice["FaktureOdebral"];
-    $invoiceToSend->createdAt = $invoice["DataWystawienia"];
-    $invoiceToSend->currency = $invoice["WalutaSymbol"];
-    $invoiceToSend->status = $invoice["Zaplacona"];
-    $invoiceToSend->errands = []; //a to co?
-    $invoiceToSend->rental = ''; //j.w
-    $invoiceToSend->name = $invoice["Nabywca_Nazwa"];
-    $invoiceToSend->dateOfPayment = $invoice["TerminZaplaty"]; //czy DataZaplaty?
-
-    $resp = call('/api/invoices', 'POST', json_encode($invoiceToSend));
+        $resp = call('/api/invoices', 'POST', json_encode($invoiceToSend));
+    }
 }
+
+
