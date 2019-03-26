@@ -3,9 +3,7 @@
 require_once('api.php');
 require_once('config.php');
 
-$elisoftDocuments = call('/api/elisoft_documents');
-
-//var_dump($elisoftDocuments);exit();
+$elisoftDocuments = call('/api/elisoft_documents.json?status=0');
 
 // Etap 1 - pobieranie z API
 if (count($elisoftDocuments) > 0) {
@@ -14,8 +12,6 @@ if (count($elisoftDocuments) > 0) {
 
         // 1. Insert to database 
         $guid = getGUID();
-
-//var_dump($guid);exit();
 
         //$contractor = $conn->select("SELECT TOP 1 * FROM [dbo].[Kontrahenci] ORDER BY [ID_Kontrahenta] DESC");
 
@@ -55,9 +51,6 @@ if (count($elisoftDocuments) > 0) {
                 . "'" . $document->id . "'"
                 . ")");
 
-var_dump($extDokument);
-exit();
-
         foreach ($document->elisoftDocumentRows as $row) {
             $extDokumentWiersz = $conn->execute("INSERT INTO [dbo].[ExtDokumentWiersz] ("
                     . "[GUID_Dokumentu],"
@@ -83,15 +76,13 @@ exit();
                     . "'" . $row->isBrutto . "'"
                     . ")");
         }
-        // 2. Send post to elisoftDocuments/id with status + 1
-        unset($document->id);
-        $resp = call('/api/elisoft_documents', 'PUT', $document);
-        var_dump(json_decode($resp));
+
+        $document->status = 1;
+        $resp = call('/api/elisoft_documents/' . $document->id, 'PUT', $document);
     }
 } else {
     echo "Brak dokumentow do pobrania";
 }
-
 
 // Etap 2 - sprawdzanie faktur w Elisoft i ich wysylka na API
 $invoices = $conn->select("SELECT TOP 1 * FROM [dbo].[Faktury] ORDER BY [ID_Faktury] DESC");
@@ -113,7 +104,6 @@ if (is_array($invoices)) {
         $resp = call('/api/invoices', 'POST', json_encode($invoiceToSend));
     }
 }
-
 
 
 function getGUID(){

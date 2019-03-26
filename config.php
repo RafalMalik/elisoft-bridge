@@ -8,8 +8,8 @@ $dbname = "bdFaktury";
 $username = "klajmaxapp";
 $pwd = "12345";
 
-$conn = new PdoDblibMssql($hostname, $port, $dbname, $username, $pwd);
+//$conn = new PdoDblibMssql($hostname, $port, $dbname, $username, $pwd);
 
-const API_URL = 'http://app.klajmaxgo.pl';
+const API_URL = 'http://localhost:1182';
 
-const API_TOKEN = 'ki4Xjr8#jq@';
+const API_TOKEN = '12345';
