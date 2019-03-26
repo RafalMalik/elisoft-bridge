@@ -5,7 +5,7 @@ require_once('config.php');
 
 $elisoftDocuments = call('/api/elisoft_documents');
 
-var_dump($elisoftDocuments);exit();
+//var_dump($elisoftDocuments);exit();
 
 // Etap 1 - pobieranie z API
 if (count($elisoftDocuments) > 0) {
@@ -14,6 +14,8 @@ if (count($elisoftDocuments) > 0) {
 
         // 1. Insert to database 
         $guid = getGUID();
+
+//var_dump($guid);exit();
 
         //$contractor = $conn->select("SELECT TOP 1 * FROM [dbo].[Kontrahenci] ORDER BY [ID_Kontrahenta] DESC");
 
@@ -119,13 +121,7 @@ function getGUID(){
         return com_create_guid();
     }
     else {
-      return sprintf( '%04x%04x%04x%04x%04x%04x%04x%04x',
-        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
-        mt_rand( 0, 0xffff ),
-        mt_rand( 0, 0x0fff ) | 0x4000,
-        mt_rand( 0, 0x3fff ) | 0x8000,
-        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
-    );
+     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
     }
 }
 

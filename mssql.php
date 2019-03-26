@@ -69,6 +69,8 @@ class PdoDblibMssql {
     }
     
     public function execute($query) {
+	var_dump($query);
+
         $stmt = $this->db->prepare($query);
         
         return $stmt->execute();
