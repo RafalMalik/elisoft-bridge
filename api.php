@@ -26,6 +26,8 @@ function call($endpoint, $method = 'GET', $params = null) {
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
     }
 
+curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-AUTH-TOKEN:' . API_TOKEN));
+
     $response = curl_exec($curl);
 
     curl_close($curl);

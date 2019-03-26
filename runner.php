@@ -5,7 +5,7 @@ require_once('config.php');
 
 $elisoftDocuments = call('/api/elisoft_documents');
 
-var_dump($elisoftDocuments);
+var_dump($elisoftDocuments);exit();
 
 // Etap 1 - pobieranie z API
 if (count($elisoftDocuments) > 0) {
@@ -13,11 +13,11 @@ if (count($elisoftDocuments) > 0) {
     foreach ($elisoftDocuments as $document) {
 
         // 1. Insert to database 
-        $guid = com_create_guid();
-//        $contractor = call($document->contractor);
-        $contractor = $conn->select("SELECT TOP 1 * FROM [dbo].[Kontrahenci] ORDER BY [ID_Kontrahenta] DESC");
+        $guid = getGUID();
 
-        $contractorId = $contractor['ID_Kontrahenta'];
+        //$contractor = $conn->select("SELECT TOP 1 * FROM [dbo].[Kontrahenci] ORDER BY [ID_Kontrahenta] DESC");
+
+        $contractorId = 236540;
 
         $extDokument = $conn->execute("INSERT INTO [dbo].[ExtDokument] ("
                 . "[Guid],"
@@ -37,7 +37,7 @@ if (count($elisoftDocuments) > 0) {
                 . "[External_ID]"
                 . ") VALUES ("
                 . "'" . $guid . "',"
-                . "'" . $document->type . "',"
+                . "" . $document->type . ","
                 . "'" . $contractorId . "',"
                 . "'" . $document->placeOfIssue . "',"
                 . "'" . $document->daysToPay . "',"
@@ -52,6 +52,9 @@ if (count($elisoftDocuments) > 0) {
                 . "'" . $document->sendMail . "',"
                 . "'" . $document->id . "'"
                 . ")");
+
+var_dump($extDokument);
+exit();
 
         foreach ($document->elisoftDocumentRows as $row) {
             $extDokumentWiersz = $conn->execute("INSERT INTO [dbo].[ExtDokumentWiersz] ("
@@ -106,6 +109,23 @@ if (is_array($invoices)) {
         $invoiceToSend->dateOfPayment = $invoice["TerminZaplaty"]; //czy DataZaplaty?
 
         $resp = call('/api/invoices', 'POST', json_encode($invoiceToSend));
+    }
+}
+
+
+
+function getGUID(){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }
+    else {
+      return sprintf( '%04x%04x%04x%04x%04x%04x%04x%04x',
+        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+        mt_rand( 0, 0xffff ),
+        mt_rand( 0, 0x0fff ) | 0x4000,
+        mt_rand( 0, 0x3fff ) | 0x8000,
+        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+    );
     }
 }
 

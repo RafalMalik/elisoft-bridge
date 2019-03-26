@@ -1,0 +1,375 @@
+int(2)
+array(186) {
+  ["ID_Kontrahenta"]=>
+  string(1) "1"
+  [0]=>
+  string(1) "1"
+  ["Guid"]=>
+  string(32) "91FBADFCA800450C9BE5E229F05D2C3A"
+  [1]=>
+  string(32) "91FBADFCA800450C9BE5E229F05D2C3A"
+  ["PrzydzielonyPracownik"]=>
+  string(1) "0"
+  [2]=>
+  string(1) "0"
+  ["Symbol"]=>
+  string(0) ""
+  [3]=>
+  string(0) ""
+  ["Grupa"]=>
+  string(1) "0"
+  [4]=>
+  string(1) "0"
+  ["Typ"]=>
+  string(0) ""
+  [5]=>
+  string(0) ""
+  ["Imie"]=>
+  string(0) ""
+  [6]=>
+  string(0) ""
+  ["Nazwisko"]=>
+  string(0) ""
+  [7]=>
+  string(0) ""
+  ["Pesel"]=>
+  string(0) ""
+  [8]=>
+  string(0) ""
+  ["Nazwa_Firmy"]=>
+  string(25) "FHU GOSTRANS Janusz Szula"
+  [9]=>
+  string(25) "FHU GOSTRANS Janusz Szula"
+  ["Pelna_Nazwa_Firmy"]=>
+  string(0) ""
+  [10]=>
+  string(0) ""
+  ["Ulica"]=>
+  string(8) "Rybnicka"
+  [11]=>
+  string(8) "Rybnicka"
+  ["Nr_Domu"]=>
+  string(3) "123"
+  [12]=>
+  string(3) "123"
+  ["Nr_Mieszkania"]=>
+  string(0) ""
+  [13]=>
+  string(0) ""
+  ["Kod"]=>
+  string(6) "43-176"
+  [14]=>
+  string(6) "43-176"
+  ["Miejscowosc"]=>
+  string(7) "Gostyń"
+  [15]=>
+  string(7) "Gostyń"
+  ["Wojewodztwo"]=>
+  string(9) "śląskie"
+  [16]=>
+  string(9) "śląskie"
+  ["Panstwo"]=>
+  string(0) ""
+  [17]=>
+  string(0) ""
+  ["Telefon"]=>
+  string(0) ""
+  [18]=>
+  string(0) ""
+  ["Telefon_Kontaktowy"]=>
+  string(0) ""
+  [19]=>
+  string(0) ""
+  ["Telefon_Komorkowy"]=>
+  string(0) ""
+  [20]=>
+  string(0) ""
+  ["Fax"]=>
+  string(0) ""
+  [21]=>
+  string(0) ""
+  ["Rodzaj_Dokumentu"]=>
+  NULL
+  [22]=>
+  NULL
+  ["Nr_Dokumentu"]=>
+  NULL
+  [23]=>
+  NULL
+  ["Nip"]=>
+  string(13) "635-163-50-23"
+  [24]=>
+  string(13) "635-163-50-23"
+  ["NipKraj"]=>
+  string(0) ""
+  [25]=>
+  string(0) ""
+  ["Regon"]=>
+  string(0) ""
+  [26]=>
+  string(0) ""
+  ["Nazwa_Banku"]=>
+  string(0) ""
+  [27]=>
+  string(0) ""
+  ["Nr_Rachunku"]=>
+  string(0) ""
+  [28]=>
+  string(0) ""
+  ["KontoDomyslne"]=>
+  NULL
+  [29]=>
+  NULL
+  ["Strona_WWW"]=>
+  string(0) ""
+  [30]=>
+  string(0) ""
+  ["Email"]=>
+  string(0) ""
+  [31]=>
+  string(0) ""
+  ["Rabat"]=>
+  string(3) "0.0"
+  [32]=>
+  string(3) "0.0"
+  ["StawkaVAT"]=>
+  string(2) "23"
+  [33]=>
+  string(2) "23"
+  ["Opis"]=>
+  string(0) ""
+  [34]=>
+  string(0) ""
+  ["Opcje"]=>
+  NULL
+  [35]=>
+  NULL
+  ["Usuniety"]=>
+  string(1) "0"
+  [36]=>
+  string(1) "0"
+  ["DrukujPelnaNazwe"]=>
+  string(1) "0"
+  [37]=>
+  string(1) "0"
+  ["Zablokowany"]=>
+  string(1) "0"
+  [38]=>
+  string(1) "0"
+  ["PlatnoscForma"]=>
+  string(1) "2"
+  [39]=>
+  string(1) "2"
+  ["PlatnoscDni"]=>
+  string(1) "0"
+  [40]=>
+  string(1) "0"
+  ["PlatnoscOpis"]=>
+  string(8) "Gotówka"
+  [41]=>
+  string(8) "Gotówka"
+  ["ZgodaNaEFaktury"]=>
+  string(1) "0"
+  [42]=>
+  string(1) "0"
+  ["Dostawa_TenSamAdres"]=>
+  string(1) "0"
+  [43]=>
+  string(1) "0"
+  ["Dostawa_Ulica"]=>
+  NULL
+  [44]=>
+  NULL
+  ["Dostawa_Nr_Domu"]=>
+  NULL
+  [45]=>
+  NULL
+  ["Dostawa_Kod"]=>
+  NULL
+  [46]=>
+  NULL
+  ["Dostawa_Miejscowosc"]=>
+  NULL
+  [47]=>
+  NULL
+  ["Dostawa_Wojewodztwo"]=>
+  NULL
+  [48]=>
+  NULL
+  ["Dostawa_Panstwo"]=>
+  NULL
+  [49]=>
+  NULL
+  ["Cennik_Guid"]=>
+  string(0) ""
+  [50]=>
+  string(0) ""
+  ["Dzialalnosc_Data_Rozpoczecia"]=>
+  NULL
+  [51]=>
+  NULL
+  ["Dzialalnosc_PKD"]=>
+  string(0) ""
+  [52]=>
+  string(0) ""
+  ["Dzialalnosc_Forma_Prawna_Ogolna"]=>
+  string(0) ""
+  [53]=>
+  string(0) ""
+  ["Dzialalnosc_Forma_Prawna_Szczegolna"]=>
+  string(0) ""
+  [54]=>
+  string(0) ""
+  ["Dzialalnosc_Forma_Wlasnosci"]=>
+  string(0) ""
+  [55]=>
+  string(0) ""
+  ["Dzialalnosc_Organ_Rejestrowy"]=>
+  string(0) ""
+  [56]=>
+  string(0) ""
+  ["Dzialalnosc_Nazwa_Rejestru"]=>
+  string(0) ""
+  [57]=>
+  string(0) ""
+  ["Dowod_Numer"]=>
+  string(0) ""
+  [58]=>
+  string(0) ""
+  ["Dowod_Wydany_Data"]=>
+  NULL
+  [59]=>
+  NULL
+  ["Dowod_Wydany_Przez"]=>
+  string(0) ""
+  [60]=>
+  string(0) ""
+  ["Osoba_Imie"]=>
+  string(0) ""
+  [61]=>
+  string(0) ""
+  ["Osoba_Nazwisko"]=>
+  string(0) ""
+  [62]=>
+  string(0) ""
+  ["Osoba_Tytul"]=>
+  string(0) ""
+  [63]=>
+  string(0) ""
+  ["Osoba_Data_Urodzenia"]=>
+  NULL
+  [64]=>
+  NULL
+  ["Uwaga_Platnosci"]=>
+  string(1) "0"
+  [65]=>
+  string(1) "0"
+  ["Uwaga_Dostawy"]=>
+  string(1) "0"
+  [66]=>
+  string(1) "0"
+  ["Uwaga_Wykonanie"]=>
+  string(1) "0"
+  [67]=>
+  string(1) "0"
+  ["DOS_ZrodloPozyskania"]=>
+  NULL
+  [68]=>
+  NULL
+  ["DOS_CelPrzetwarzania"]=>
+  NULL
+  [69]=>
+  NULL
+  ["DOS_KategoriaOsoby"]=>
+  NULL
+  [70]=>
+  NULL
+  ["DOS_ZgodaNaPrzetwarzanie"]=>
+  NULL
+  [71]=>
+  NULL
+  ["DOS_ZgodaNaMarketing"]=>
+  NULL
+  [72]=>
+  NULL
+  ["DOS_ZgodaNaPrzekazywanie"]=>
+  NULL
+  [73]=>
+  NULL
+  ["DOS_OdwolanieZgodyNaPrzetwarzanie"]=>
+  NULL
+  [74]=>
+  NULL
+  ["DOS_OdwolanieZgodyNaMarketing"]=>
+  NULL
+  [75]=>
+  NULL
+  ["DOS_OdwolanieZgodyNaPrzekazywanie"]=>
+  NULL
+  [76]=>
+  NULL
+  ["DOS_ZgodaNaPrzetwarzanieData"]=>
+  NULL
+  [77]=>
+  NULL
+  ["DOS_ZgodaNaMarketingData"]=>
+  NULL
+  [78]=>
+  NULL
+  ["DOS_ZgodaNaPrzekazywanieData"]=>
+  NULL
+  [79]=>
+  NULL
+  ["DOS_OdwolanieZgodyNaPrzetwarzanieData"]=>
+  NULL
+  [80]=>
+  NULL
+  ["DOS_OdwolanieZgodyNaMarketingData"]=>
+  NULL
+  [81]=>
+  NULL
+  ["DOS_OdwolanieZgodyNaPrzekazywanieData"]=>
+  NULL
+  [82]=>
+  NULL
+  ["DC_UserId"]=>
+  string(1) "1"
+  [83]=>
+  string(1) "1"
+  ["DC_UserName"]=>
+  string(13) "Administrator"
+  [84]=>
+  string(13) "Administrator"
+  ["DC_Date"]=>
+  string(23) "2017-05-16 16:54:56.740"
+  [85]=>
+  string(23) "2017-05-16 16:54:56.740"
+  ["DM_UserId"]=>
+  string(1) "1"
+  [86]=>
+  string(1) "1"
+  ["DM_UserName"]=>
+  string(13) "Administrator"
+  [87]=>
+  string(13) "Administrator"
+  ["DM_Date"]=>
+  string(23) "2017-05-16 16:54:56.767"
+  [88]=>
+  string(23) "2017-05-16 16:54:56.767"
+  ["Email2"]=>
+  NULL
+  [89]=>
+  NULL
+  ["SposobLiczenia"]=>
+  string(1) "0"
+  [90]=>
+  string(1) "0"
+  ["StatusVAT"]=>
+  NULL
+  [91]=>
+  NULL
+  ["KasaDomyslna"]=>
+  NULL
+  [92]=>
+  NULL
+}
