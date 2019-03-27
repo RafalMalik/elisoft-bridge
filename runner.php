@@ -32,7 +32,8 @@ if (count($elisoftDocuments) > 0) {
                 . "[LiczOdCenBrutto],"
                 . "[Uwagi],"
                 . "[WyslijMail],"
-                . "[External_ID]"
+                . "[External_ID],"
+		. "[External_Symbol]"
                 . ") VALUES ("
                 . "'" . $guid . "',"
                 . "" . $document->type . ","
@@ -48,7 +49,8 @@ if (count($elisoftDocuments) > 0) {
                 . "'" . $document->isBrutto . "',"
                 . "'" . $document->note . "',"
                 . "'" . $document->sendMail . "',"
-                . "'" . $document->id . "'"
+		. "'" . $document->id . "',"
+                . "'0'"
                 . ")");
 
         foreach ($document->elisoftDocumentRows as $row) {
@@ -75,14 +77,30 @@ if (count($elisoftDocuments) > 0) {
                     . "'" . $row->discount . "',"
                     . "'" . $row->isBrutto . "'"
                     . ")");
+
+
         }
 
         $document->status = 1;
         $resp = call('/api/elisoft_documents/' . $document->id, 'PUT', $document);
+	
+	
+
     }
 } else {
     echo "Brak dokumentow do pobrania";
 }
+
+$completed = $conn->selectAll("SELECT [External_id] FROM [dbo].[extDokument] WHERE [External_Symbol] = 0 AND [IsCompleted] = 1");
+
+
+	foreach ($completed as $row) {
+		var_dump($row['External_id']);
+
+
+}
+
+exit();
 
 // Etap 2 - sprawdzanie faktur w Elisoft i ich wysylka na API
 $invoices = $conn->select("SELECT TOP 1 * FROM [dbo].[Faktury] ORDER BY [ID_Faktury] DESC");

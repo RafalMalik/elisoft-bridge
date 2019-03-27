@@ -60,16 +60,25 @@ class PdoDblibMssql {
         $this->db = null;
     }
 
-    public function select($query) {
+    public function selectOne($query) {
         $stmt = $this->db->prepare($query);
         
         $stmt->execute();
         
         return $stmt->fetch();
     }
+
+
+    public function selectAll($query) {
+        $stmt = $this->db->prepare($query);
+        
+        $stmt->execute();
+        
+        return $stmt->fetchAll();
+    }
     
     public function execute($query) {
-	var_dump($query);
+var_dump($query);
 
         $stmt = $this->db->prepare($query);
         
