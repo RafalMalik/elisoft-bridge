@@ -13,14 +13,31 @@ if (count($elisoftDocuments) > 0) {
         // 1. Insert to database 
         $guid = getGUID();
 
-        //$contractor = $conn->select("SELECT TOP 1 * FROM [dbo].[Kontrahenci] ORDER BY [ID_Kontrahenta] DESC");
-
-        $contractorId = 236540;
+        $contractor = $conn->selectOne(sprintf("SELECT TOP 1 [ID_Kontrahenta] FROM [dbo].[Kontrahenci] WHERE Replace([Nip],'-','') = '%s'", $document->contractor->nin));
+        if ($contractor && isset($contractor['ID_Kontrahenta'])) {
+            $contractorKey = "[ID_Kontrahenta],";
+            $contractorValue = "'" . $contractor['ID_Kontrahenta'] . "',";
+        } else {
+            $contractorKey = "[Kontrahent_Nip],"
+                    . "[Kontrahent_Nazwa],"
+                    . "[Kontrahent_Ulica],"
+                    . "[Kontrahent_Numer],"
+                    . "[Kontrahent_KodPocztowy],"
+                    . "[Kontrahent_Miejscowosc],"
+                    . "[Kontrahent_Panstwo],";
+            $contractorValue = "'" . $document->contractor->nin . "',"
+                    . "'" . $document->contractor->name . "',"
+                    . "'" . $document->contractor->address->street . "',"
+                    . "'" . $document->contractor->address->number . "',"
+                    . "'" . $document->contractor->address->postCode . "',"
+                    . "'" . $document->contractor->address->city . "',"
+                    . "'" . $document->contractor->address->country . "',";
+        }
 
         $extDokument = $conn->execute("INSERT INTO [dbo].[ExtDokument] ("
                 . "[Guid],"
                 . "[RodzajDokumentu],"
-                . "[ID_Kontrahenta],"
+                . $contractorKey
                 . "[MiejsceWystawienia],"
                 . "[ZaplataDni],"
                 . "[ZaplataSposob],"
@@ -33,11 +50,11 @@ if (count($elisoftDocuments) > 0) {
                 . "[Uwagi],"
                 . "[WyslijMail],"
                 . "[External_ID],"
-		. "[External_Symbol]"
+                . "[External_Symbol]"
                 . ") VALUES ("
                 . "'" . $guid . "',"
                 . "" . $document->type . ","
-                . "'" . $contractorId . "',"
+                . $contractorValue
                 . "'" . $document->placeOfIssue . "',"
                 . "'" . $document->daysToPay . "',"
                 . "'" . $document->method . "',"
@@ -49,10 +66,9 @@ if (count($elisoftDocuments) > 0) {
                 . "'" . $document->isBrutto . "',"
                 . "'" . $document->note . "',"
                 . "'" . $document->sendMail . "',"
-		. "'" . $document->id . "',"
+                . "'" . $document->id . "',"
                 . "'0'"
                 . ")");
-
         foreach ($document->elisoftDocumentRows as $row) {
             $extDokumentWiersz = $conn->execute("INSERT INTO [dbo].[ExtDokumentWiersz] ("
                     . "[GUID_Dokumentu],"
@@ -77,30 +93,20 @@ if (count($elisoftDocuments) > 0) {
                     . "'" . $row->discount . "',"
                     . "'" . $row->isBrutto . "'"
                     . ")");
-
-
         }
 
         $document->status = 1;
         $resp = call('/api/elisoft_documents/' . $document->id, 'PUT', $document);
-	
-	
-
     }
 } else {
     echo "Brak dokumentow do pobrania";
 }
-
 $completed = $conn->selectAll("SELECT [External_id] FROM [dbo].[extDokument] WHERE [External_Symbol] = 0 AND [IsCompleted] = 1");
 
 
-	foreach ($completed as $row) {
-		var_dump($row['External_id']);
-
-
+foreach ($completed as $row) {
+    $resp = call('/invoice/elisoft/mark/' . $row['External_id'], 'GET');
 }
-
-exit();
 
 // Etap 2 - sprawdzanie faktur w Elisoft i ich wysylka na API
 $invoices = $conn->select("SELECT TOP 1 * FROM [dbo].[Faktury] ORDER BY [ID_Faktury] DESC");
@@ -123,14 +129,10 @@ if (is_array($invoices)) {
     }
 }
 
-
-function getGUID(){
-    if (function_exists('com_create_guid')){
+function getGUID() {
+    if (function_exists('com_create_guid')) {
         return com_create_guid();
-    }
-    else {
-     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+    } else {
+        return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
     }
 }
-
-
